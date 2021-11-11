@@ -11,7 +11,6 @@ const publicDirectoryPath = path.join(__dirname, "./public");
 app.use(express.static(publicDirectoryPath));
 
 io.on("connection",(socket)=>{
-    // socket.emit("testing","hello");
 
 io.emit("testing","hello");
 
@@ -23,8 +22,12 @@ socket.on("user",(msg)=>{
     socket.broadcast.emit("user",`${msg} got connected`);
 })
 
-});
+socket.on('disconnect',()=>{
+    io.emit("message","A user has left!");
+})
 
+});
+ 
 server.listen(3004,()=>{
     console.log("server is up running at port - 3004"); 
 })

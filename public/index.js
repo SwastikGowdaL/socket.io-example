@@ -8,3 +8,7 @@ socket.on("testing",(value)=>{
 socket.on("user",(value)=>{
     console.log(value); 
 })
+
+socket.on("message",(value)=>{
+    console.log(value); 
+})
